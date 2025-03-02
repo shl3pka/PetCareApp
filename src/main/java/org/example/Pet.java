@@ -1,9 +1,24 @@
 package org.example;
 
+import org.example.service.PetService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-
 @Component
 public class Pet {
+    @Autowired
+    @Qualifier("domesticPetService")
+    private PetService petService;
+
+    public void displayServiceInfo() {
+        petService.printPetDetails();
+    }
+@Autowired
+    private Veterinarian veterinarian;
+    public void visitVet() {
+        veterinarian.checkHealth(this);
+    }
+
     public String getName() {
         return name;
     }

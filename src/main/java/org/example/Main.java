@@ -1,7 +1,8 @@
 package org.example;
-
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import org.example.repository.PetRepository;
 public class Main {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProjectConfig.class);
@@ -12,6 +13,18 @@ public class Main {
         System.out.println("Pet weight: " + kitty.getWeight());
         System.out.println("--------------------------------------");
         System.out.println("Pet history: " + kitty.getHistory());
+        kitty.visitVet();
+        kitty.displayServiceInfo();
+
+        PetRepository petRepository = context.getBean(PetRepository.class);
+
+        petRepository.save(kitty);
+        System.out.println("All pets in repository: " + petRepository.findAll().size());
+
+        // ✅ Demonstrate Singleton Beans (Eager & Lazy Initialization)
+        System.out.println("Requesting LazyBean...");
+        LazyBean lazyBean = context.getBean(LazyBean.class);
         }
+
     }
 
