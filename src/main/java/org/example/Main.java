@@ -21,7 +21,6 @@ public class Main {
         petRepository.save(kitty);
         System.out.println("All pets in repository: " + petRepository.findAll().size());
 
-        // ✅ Demonstrate Singleton Beans (Eager & Lazy Initialization)
         System.out.println("Requesting LazyBean...");
         LazyBean lazyBean = context.getBean(LazyBean.class);
         }
